@@ -1,14 +1,16 @@
 package ar.edu.unju.fi.tp6.model;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
@@ -36,15 +38,14 @@ public class Producto {
 	@Column(name="prod_stock")
 	private int stock;
 	
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "comp_id")
-	private Compra compra;
+	@OneToMany(mappedBy = "producto", cascade = CascadeType.ALL)
+	private List<Compra> compras = new ArrayList<Compra>();
 	
 	public Producto() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Producto(Long id, int codigo, String nombre, double precio, String marca, int stock, Compra compra) {
+	public Producto(Long id, int codigo, String nombre, double precio, String marca, int stock) {
 		super();
 		this.id = id;
 		this.codigo = codigo;
@@ -52,7 +53,6 @@ public class Producto {
 		this.precio = precio;
 		this.marca = marca;
 		this.stock = stock;
-		this.compra = compra;
 	}
 
 	public Long getId() {
@@ -102,19 +102,11 @@ public class Producto {
 	public void setStock(int stock) {
 		this.stock = stock;
 	}
-	
-	public Compra getCompra() {
-		return compra;
-	}
-
-	public void setCompra(Compra compra) {
-		this.compra = compra;
-	}
 
 	@Override
 	public String toString() {
 		return "Producto [id=" + id + ", codigo=" + codigo + ", nombre=" + nombre + ", precio=" + precio + ", marca="
-				+ marca + ", stock=" + stock + ", compra=" + compra + "]";
+				+ marca + ", stock=" + stock + "]";
 	}
 	
 }
