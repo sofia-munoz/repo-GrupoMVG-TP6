@@ -1,6 +1,5 @@
 package ar.edu.unju.fi.tp6.controller;
 
-//import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -31,7 +30,6 @@ public class CompraController {
 	
 	@GetMapping("/compra/nueva")
 	public String getCompraNuevaPage(Model model) {
-		//List<Producto> listaProductos = productoService.getProductos();
 		model.addAttribute("compra", compra);
 		model.addAttribute("productos", productoService.getProductos());
 		return "compranueva";
