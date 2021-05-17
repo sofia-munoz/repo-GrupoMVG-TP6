@@ -6,22 +6,52 @@ import java.time.LocalDateTime;
 import java.time.Period;
 import java.util.Calendar;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 @Component
+@Entity
+@Table(name="CLIENTES")
 public class Cliente {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "cli_id")
+	private Long id;
 	
+	@Column(name = "cli_tipoDocumento")
 	private String tipoDocumento;
+	
+	@Column(name = "cli_nroDocumento", nullable = false)
 	private int nroDocumento;
+	
+	@Column(name = "cli_nombreApellido", length = 300)
 	private String nombreApellido;
+	
+	@Column(name = "cli_email")
 	private String email;
+	
+	@Column(name = "cli_password")
 	private String password;
+	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Column(name = "cli_fechaNacimiento")
 	private LocalDate fechaNacimiento;
+	
+	@Column(name = "cli_codigoAreaTelefono")
 	private int codigoAreaTelefono;
+	
+	@Column(name = "cli_nroTelefono")
 	private int nroTelefono;
+	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Column(name = "cli_fechaUltimaCompra")
 	private LocalDate fechaUltimaCompra;
 	
 	public Cliente() {
@@ -40,6 +70,14 @@ public class Cliente {
 		this.codigoAreaTelefono = codigoAreaTelefono;
 		this.nroTelefono = nroTelefono;
 		this.fechaUltimaCompra = fechaUltimaCompra;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getTipoDocumento() {
