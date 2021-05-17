@@ -1,19 +1,44 @@
 package ar.edu.unju.fi.tp6.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
+@Entity
+@Table(name = "COMPRAS")
 public class Compra {
-	private int codigo;
-	private Producto producto;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "com_codigo")
+	private long codigo;
+	
+	@Column(name = "com_cantidad")
 	private int cantidad;
+	
+	@Column(name = "com_total")
 	private double total;
+	
+	@Autowired
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "pro_codigo")
+	private Producto producto;
 	
 	public Compra() {
 		super();
 	}
 
-	public Compra(int codigo, Producto producto, int cantidad, double total) {
+	public Compra(long codigo, Producto producto, int cantidad, double total) {
 		super();
 		this.codigo = codigo;
 		this.producto = producto;
@@ -21,11 +46,11 @@ public class Compra {
 		this.total = total;
 	}
 
-	public int getCodigo() {
+	public long getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(int codigo) {
+	public void setCodigo(long codigo) {
 		this.codigo = codigo;
 	}
 
