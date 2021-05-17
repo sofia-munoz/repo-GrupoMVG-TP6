@@ -46,6 +46,7 @@ public class Compra {
 	}
 
 	public double getTotal() {
+		double total = this.cantidad*this.producto.getPrecio();
 		return total;
 	}
 
