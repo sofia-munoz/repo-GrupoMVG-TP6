@@ -21,7 +21,7 @@ public class Compra {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "com_codigo")
-	private long codigo;
+	private Long codigo;
 	
 	@Column(name = "com_cantidad")
 	private int cantidad;
@@ -38,7 +38,7 @@ public class Compra {
 		super();
 	}
 
-	public Compra(long codigo, Producto producto, int cantidad, double total) {
+	public Compra(Long codigo, Producto producto, int cantidad, double total) {
 		super();
 		this.codigo = codigo;
 		this.producto = producto;
@@ -46,11 +46,11 @@ public class Compra {
 		this.total = total;
 	}
 
-	public long getCodigo() {
+	public Long getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(long codigo) {
+	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
 
