@@ -38,7 +38,7 @@ public class Producto {
 	@Column(name="prod_stock")
 	private int stock;
 	
-	@OneToMany(mappedBy = "prodcuto", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "producto", cascade = CascadeType.ALL)
 	private List<Compra> compras = new ArrayList<>();
 	
 	public Producto() {
